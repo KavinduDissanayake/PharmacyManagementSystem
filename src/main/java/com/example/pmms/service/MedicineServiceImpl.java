@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service
@@ -57,5 +57,18 @@ public class MedicineServiceImpl  implements MedicineService{
 	public void deleteMedicineById(long id) {
 
 		this.medicineRepository.deleteById(id);
+	}
+
+
+    @Override
+	public Medicine getMedicineById(long id) {
+		Optional<Medicine> optional = medicineRepository.findById(id);
+        Medicine medicine = null;
+		if (optional.isPresent()) {
+            medicine = optional.get();
+		} else {
+			throw new RuntimeException(" Employee not found for id :: " + id);
+		}
+		return medicine;
 	}
 }

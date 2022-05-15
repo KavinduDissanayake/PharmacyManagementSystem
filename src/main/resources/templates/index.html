@@ -356,7 +356,7 @@
                     <td th:text="${medicine.expiredDate}"></td>
                     <td>
 
-                        <a href="#" class="edit" data-toggle="modal">
+                        <a th:href="@{/showFormForUpdate/{id}(id=${medicine.id})}" class="edit" >
                             <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                         </a>
 

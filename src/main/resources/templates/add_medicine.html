@@ -296,41 +296,42 @@
                         <h2>Add <b>Medicine</b></h2>
                     </div>
                     <div class="col-sm-6">
-<!--                        <a th:href = "@{/showNewMedicineForm}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Back</span></a>-->
-
+                        <a th:href = "@{/}" class="btn btn-success"><i class="bi bi-arrow-left-circle"></i> <span>Back</span></a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <form action="#" th:action="@{/saveMedicine}" th:object="${medicine}"
                           method="POST">
-                        <div class="form-group">
+                        <div class="form-group" >
                             <label >Medicine Name</label>
-                            <input type="text" class="form-control col-6"  aria-describedby="emailHelp" placeholder="Enter Medicine Name" th:field="*{name}">
+                            <input type="text" class="form-control w-100"  aria-describedby="emailHelp" placeholder="Enter Medicine Name" th:field="*{name}">
                         </div>
                         <div class="form-group">
                             <label >Medicine Purpose</label>
-                            <input type="text" class="form-control col-6"  aria-describedby="emailHelp" placeholder="Enter Medicine Purpose" th:field="*{purpose}">
+                            <input type="text" class="form-control  w-100"  aria-describedby="emailHelp" placeholder="Enter Medicine Purpose" th:field="*{purpose}">
                         </div>
 
 
                         <div class="form-group">
                             <label >Medicine Create Date</label>
-                            <input type="date" class="form-control col-6"  aria-describedby="emailHelp" placeholder="Enter Medicine Create Date"  th:field="*{createDate}">
+                            <input type="date" class="form-control  w-100"  aria-describedby="emailHelp" placeholder="Enter Medicine Create Date"  th:field="*{createDate}">
                         </div>
 
                         <div class="form-group">
                             <label >Medicine Expired Date</label>
-                            <input type="date" class="form-control col-6"  aria-describedby="emailHelp" placeholder="Enter Medicine Expired Date" th:field="*{expiredDate}">
+                            <input type="date" class="form-control w-100"  aria-describedby="emailHelp" placeholder="Enter Medicine Expired Date" th:field="*{expiredDate}">
                         </div>
-                        <button type="submit" class="btn btn-info col-4"> Save Medicine</button>
 
+                        <div class="form-group text-center ">
+                        <button type="submit" class="btn btn-info col-4"> Update Medicine</button>
+                        </div>
                     </form>
                 </div>
-<!--                <div class="col-sm-6">-->
-<!--                    <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com"/>-->
-<!--                </div>-->
+                <div class="col-sm-6">
+                    <img src="../static/images/add_img.png" width="500" th:src="@{images/add_img.png}"/>
+                </div>
             </div>
 
 <!-- medicine form-->

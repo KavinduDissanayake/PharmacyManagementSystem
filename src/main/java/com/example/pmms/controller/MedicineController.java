@@ -70,4 +70,17 @@ public class MedicineController {
 		return "redirect:/";
 	}
 
+
+
+    @GetMapping("/showFormForUpdate/{id}")
+	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
+
+		// get employee from the service
+		Medicine medicine = medicineService.getMedicineById(id);
+
+		// set employee as a model attribute to pre-populate the form
+		model.addAttribute("medicine", medicine);
+		return "update_medicine";
+	}
+
 }
