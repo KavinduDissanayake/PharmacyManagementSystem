@@ -12,4 +12,7 @@ public interface MedicineService {
     void saveMedicine(Medicine medicine);
     Page<Medicine> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection,@Param("keyword") String keyword);
 
+
+
+    void deleteMedicineById(long id);
 }

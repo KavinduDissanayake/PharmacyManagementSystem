@@ -49,4 +49,13 @@ public class MedicineServiceImpl  implements MedicineService{
 
 		return this.medicineRepository.findAll(pageable);
 	}
+
+
+
+    //delete-----------------------------------------------------------------------------
+    @Override
+	public void deleteMedicineById(long id) {
+
+		this.medicineRepository.deleteById(id);
+	}
 }
