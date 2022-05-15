@@ -4,6 +4,7 @@ import com.example.pmms.model.Medicine;
 import com.example.pmms.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,8 @@ public class MedicineController {
     private MedicineService medicineService;
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
-//        model.addAttribute("listMedicines",medicineService.getAllMedicines());
-//
-//        return "index";
-
-        return findPaginated(1, "id", "asc", model);
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+        return findPaginated(1, "id", "asc", model,keyword);
     }
 
 
@@ -31,14 +28,15 @@ public class MedicineController {
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
-                                Model model) {
+                                Model model, @Param("keyword") String keyword) {
+
+
         int pageSize = 5;
 
-        Page<Medicine> page = medicineService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        Page<Medicine> page = medicineService.findPaginated(pageNo, pageSize, sortField, sortDir,keyword);
         List<Medicine> listEmployees = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
-//        model.addAttribute("showingItems", listEmployees.size());
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
 

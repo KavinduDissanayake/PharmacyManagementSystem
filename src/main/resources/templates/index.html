@@ -284,7 +284,11 @@
         }
     </style>
 
-
+    <script type="text/javascript">
+        function clearSearch() {
+            window.location = "[[@{/}]]";
+        }
+    </script>
 </head>
 <body>
 <div class="container-xl">
@@ -296,16 +300,41 @@
                         <h2>Manage <b>Medicine</b></h2>
                     </div>
                     <div class="col-sm-6">
-                        <a th:href = "@{/showNewMedicineForm}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Medicine</span></a>
+                        <a th:href="@{/showNewMedicineForm}" class="btn btn-success"><i
+                                class="material-icons">&#xE147;</i> <span>Add New Medicine</span></a>
                         <div class="row">
+
+                            <!--                            <form th:action="@{/}">-->
+                            <!--                                Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />-->
+                            <!--                                &nbsp;-->
+                            <!--                                <input type="submit" value="Search" />-->
+                            <!--                                &nbsp;-->
+
+                            <!--                            </form>-->
+
+
                             <div class="col-xs-8 col-xs-offset-2">
-                                <div class="input-group">
-                                    <input type="hidden" name="search_param" value="all" id="search_param">
-                                    <input type="text" class="form-control" name="x" placeholder="Search term...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-lg btn-success" type="submit">Search</button>
-									</span>
-                                </div>
+                                <form th:action="@{/}">
+                                    <div class="input-group">
+
+                                        <input class="form-control py-2 border-right-0 border" type="search"
+                                               value="search"
+                                               id="example-search-input" th:value="${keyword}" name="keyword" >
+
+
+                                        <span class="input-group-btn">
+                                           <button class="btn btn-lg btn-dark" type="button" value="Clear" id="btnClear" onclick="clearSearch()">Clean</button>
+                                            <button class="btn btn-lg btn-success" type="submit">Search</button>
+                                		</span>
+
+
+                                        <span class="input-group-btn">
+                                		</span>
+
+
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -339,25 +368,30 @@
 
                 </tbody>
             </table>
-            <div class="clearfix" th:if = "${totalPages > 1}">
+            <div class="clearfix" th:if="${totalPages > 1}">
                 <div class="hint-text">Total <b>[[${totalItems}]] </b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item "><a  th:if="${currentPage <= totalPages}" th:href="@{'/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a></li>
-<!--                    <li class="page-item"><a href="#" class="page-link">1</a></li>-->
-<!--                    <li class="page-item"><a href="#" class="page-link">2</a></li>-->
+                    <li class="page-item "><a th:if="${currentPage <= totalPages}"
+                                              th:href="@{'/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+                    </li>
+                    <!--                    <li class="page-item"><a href="#" class="page-link">1</a></li>-->
+                    <!--                    <li class="page-item"><a href="#" class="page-link">2</a></li>-->
 
-<!--                    <div class = "col-sm-1">-->
-					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                            <li class="page-item "><a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link">[[${i}]]</a></li>
-                            <li class="page-item active " th:unless="${currentPage != i}"   ><a href="#" class="page-link">[[${i}]]</a></li>
+                    <!--                    <div class = "col-sm-1">-->
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                            <li class="page-item "><a th:if="${currentPage != i}"
+                                                      th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+                                                      class="page-link">[[${i}]]</a></li>
+                            <li class="page-item active " th:unless="${currentPage != i}"><a href="#" class="page-link">[[${i}]]</a></li>
 					</span>
-<!--                    </div>-->
+                    <!--                    </div>-->
 
 
-
-<!--                    <li class="page-item"><a href="#" class="page-link">4</a></li>-->
-<!--                    <li class="page-item"><a href="#" class="page-link">5</a></li>-->
-                    <li class="page-item"><a th:if="${currentPage <= totalPages}" th:href="@{'/page/'+ ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link">Next</a></li>
+                    <!--                    <li class="page-item"><a href="#" class="page-link">4</a></li>-->
+                    <!--                    <li class="page-item"><a href="#" class="page-link">5</a></li>-->
+                    <li class="page-item"><a th:if="${currentPage <= totalPages}"
+                                             th:href="@{'/page/'+ ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+                                             class="page-link">Next</a></li>
                 </ul>
             </div>
         </div>
